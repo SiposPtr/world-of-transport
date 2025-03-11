@@ -19,7 +19,7 @@ def main():
         response = requests.get(url)
         response.raise_for_status()
     except requests.exceptions.RequestException as e:
-        print("Error making request:", e)
+        print("Error making request: ", e)
         return
 
     # check if request was successful
@@ -53,7 +53,7 @@ def main():
             print(f"- {name} ({lat}, {lon}), {dist:.2f} km away")
     else:
         # handle errors
-        print("Error:", response.status_code, response.text)
+        print("Error: ", response.status_code, response.text)
 
 # function to calculate distance between two points
 def calculate_distance(lat1, lon1, lat2, lon2):
@@ -64,8 +64,8 @@ def calculate_distance(lat1, lon1, lat2, lon2):
     dlat = lat2 - lat1
     dlon = lon2 - lon1
     a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
-    c = 2 * asin(math.sqrt(a))  # Corrected from acos
-    radius_earth_km = 6371  # Earth's radius in km
+    c = 2 * asin(math.sqrt(a)) # Corrected from acos
+    radius_earth_km = 6371 # Earth's radius in km
     
     return radius_earth_km * c
 
